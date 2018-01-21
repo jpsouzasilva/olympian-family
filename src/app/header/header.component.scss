@@ -1,0 +1,24 @@
+.header {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+
+    .header-banner {
+
+    }
+
+    .header-loading {
+
+    }
+    
+}
+
+.header.main {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    min-height: 200px;
+    height: 40vh;
+    background-image: url('https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VphbM00/videoblocks-abstract-black-smokey-background-with-floating-particles-seamlessly-loopable-animation_hxavvmncx_thumbnail-full01.png');
+}
