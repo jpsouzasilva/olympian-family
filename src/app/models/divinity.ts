@@ -1,8 +1,9 @@
-import Banners from './banners';
+import { Banners, IBannerEntry, IBanners } from './banners';
+import { StringUtils as SU } from '../utils/utils';
 
 export default class Divinity {
 
-    constructor(public name: string, public id: Number, public gender?: string,
+    constructor(public name: string, public id: number, public gender?: string,
         public father?: string, public mother?: string, public spouse?: string,
         public lover?: string, public killedBy?: string, public royal?: string,
         public kingdomOf?: string, public argonaut?: string, public sideInTheIliad?: string,
@@ -10,33 +11,28 @@ export default class Divinity {
         public target?: string) {
     }
 
+    get description(): string {
+        return this.bio.length !== 0 ? this.bio : 'Not informed';
+    }
+
     static createDivinity(jsonPayload: Object): Divinity {
         const newDivinity = new Divinity(jsonPayload['name'], parseInt(jsonPayload['id'], 10));
         for (const key in jsonPayload) {
             if (jsonPayload.hasOwnProperty(key)) {
-                const keyName = Divinity.handleKeyName(key);
-                if (<keyof Divinity>keyName) {
-                    newDivinity[keyName] = jsonPayload[key];
+                if (<keyof Divinity>key) {
+                    newDivinity[key] = jsonPayload[key];
                 }
             }
         }
         return newDivinity;
     }
 
-    private static handleKeyName(keyName: string): string {
-        const i = keyName.indexOf('?');
-        if (i > -1) {
-            return keyName.substring(0, i);
-        } else {
-            return keyName;
-        }
+    static acquireImagePath(divinityName: string): IBannerEntry {
+        const bannerEntry = Banners.list[SU.lowerCaseName(divinityName, '_')];
+        return !!bannerEntry ? bannerEntry : {big: Banners.defaultBig, small: Banners.defaultSmall};
     }
 
-    static acquireImagePath(divinityName: string) {
-        return Banners.getBanners()[divinityName];
-    }
-
-    static acquireImagePathBig(divinityName: string) {
+    static acquireImagePathBig(divinityName: string): string {
         const imagePath = this.acquireImagePath(divinityName);
         if (imagePath.hasOwnProperty('big')) {
             return imagePath.big;
@@ -47,7 +43,7 @@ export default class Divinity {
         }
     }
 
-    static acquireImagePathSmall(divinityName: string) {
+    static acquireImagePathSmall(divinityName: string): string {
         const imagePath = this.acquireImagePath(divinityName);
         if (imagePath.hasOwnProperty('small')) {
             return imagePath.small;

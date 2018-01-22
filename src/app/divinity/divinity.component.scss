@@ -1,0 +1,33 @@
+.divinity-component {
+  background: rgba(0,0,0, 0.8) url('../../assets/backgrounds/hero-bg.jpg') center cover;
+  display: grid;
+}
+
+.divinity-component.big {
+  grid-template-areas: "picture children children" "picture children children" "name description description";
+  grid-template-rows: 5em 5em 3em;
+  grid-template-columns: repeat(3, 1fr);
+  .divi-picture {
+      -webkit-box-shadow: -4px 3px 92px 0px rgba(191, 191, 191, 1);
+      -moz-box-shadow: -4px 3px 92px 0px rgba(191, 191, 191, 1);
+      box-shadow: -4px 3px 92px 0px rgba(191, 191, 191, 1);
+      border: 2px solid white;
+      object-fit: cover;
+      grid-area: picture;
+      height: 90%;
+      align-self: center;
+      justify-self: center;
+  }
+  .divi-children {
+      grid-area: children;
+  }
+  .divi-name {
+      grid-area: name;
+      font-size: 2em;
+      justify-self: center;
+      font-family: 'Supermercado One', cursive !important;
+  }
+  .divi-description {
+      grid-area: description;
+  }
+}

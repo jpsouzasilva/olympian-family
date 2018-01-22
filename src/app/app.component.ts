@@ -5,15 +5,14 @@ import { HeaderComponent } from './header/header.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   
   divinityList: Divinity[];
   selectedDivinityTree: Divinity[];
-
-  @ViewChild('app-header') appHeader: HeaderComponent;
+  @ViewChild('header') appHeader: HeaderComponent;
+  @ViewChild('divinitiesList') divinitiesList: HTMLDivElement;
 
   constructor(private divinitiesService: DivinitiesService) {}
 
@@ -21,7 +20,14 @@ export class AppComponent implements OnInit {
     this.divinitiesService.getDivinities().subscribe(
       (divinities) => {
         this.divinityList = divinities;
-        this.selectedDivinityTree = divinities.filter(god => god.name === 'Gaia');
+        const primordialGod = divinities.filter(god => god.name === 'Gaia');
+        if (primordialGod.length !== 0) {
+          this.selectedDivinityTree = [primordialGod[0]];
+        } else {
+          this.selectedDivinityTree = [divinities[1]];
+        }
+        this.appHeader.onDivinityWasSelected(divinities[0]);
+        console.log(this.selectedDivinityTree, this.filterDivinityChildren(this.selectedDivinityTree[0]));
       },
       (error) => this.onDivinitiesListError(error)
     );
@@ -47,6 +53,7 @@ export class AppComponent implements OnInit {
   }
 
   onDivinitySelectedError(reason) {
+    console.log(reason);
   }
 
 }

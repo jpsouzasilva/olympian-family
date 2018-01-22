@@ -1,11 +1,13 @@
 <div>
-  <app-header></app-header>
+  <app-header #header></app-header>
   <div>
     Something about Cronos?
   </div>
-  <app-divinity *ngFor="let divinity of selectedDivinityTree"
-    [divinity]="divinity"
-    [children]="filterDivinityChildren(divinity)"
-    (eventListener)="this.onDivinitySelected($event)"
-  ></app-divinity>
+  <div #divinitiesList>
+    <app-divinity *ngFor="let divinity of selectedDivinityTree"
+      [divinity]="divinity"
+      [children]="filterDivinityChildren(divinity)"
+      (eventListener)="this.onDivinitySelected($event)">
+    </app-divinity>
+  </div>
 </div>

@@ -1,8 +1,3 @@
-<div class="header main" [ngSwitch]="divinityBanner">
-  <ng-template ngSwitchWhen="loading">
-    <img class="header-loading" [src]="imageLoading" alt="loading img" />
-  </ng-template>
-  <ng-template ngSwitchDefault>
-    <img class="header-banner" [src]="divinityBanner" alt="current divinity img" />
-  </ng-template>
+<div class="header main" [ngSwitch]="divinity">
+  <img *ngIf="divinity" class="header-banner" [src]="divinityBanner" alt="current divinity img" />
 </div>

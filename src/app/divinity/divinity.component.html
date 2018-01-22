@@ -1,3 +1,11 @@
-<div>
-  <app-divinity-children (divinityEvent)="onSelectDivinity($event)"></app-divinity-children>
+<div *ngIf="divinity" class="divinity-component big">
+  <img class="divi-picture" [src]="imagePath()" [alt]="divinity.name" />
+  <div class="divi-children">
+    <app-divinity-children *ngFor="let child of children"
+      [divinity]="child"
+      (divinityEvent)="onSelectDivinity($event)">
+    </app-divinity-children>
+  </div>
+  <div class="divi-name">{{divinity.name}}</div>
+  <div class="divi-description">{{divinity.description}}</div>
 </div>

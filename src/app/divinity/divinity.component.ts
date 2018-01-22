@@ -15,13 +15,19 @@ export class DivinityComponent implements OnInit {
   @Output() eventListener = new EventEmitter<{event: String, data: Object}>();
   @ViewChild('app-divinity-children') divinityChildren: DivinityChildrenComponent;
 
-  constructor() { }
+  private _imagePath: string;
+
+  constructor() {}
 
   ngOnInit() {
   }
   
   onSelectDivinity($event) {
     this.eventListener.emit({event: 'selected', data: $event.name});
+  }
+
+  imagePath(): string {
+    return Divinity.acquireImagePathSmall(this.divinity.name);
   }
 
 }
