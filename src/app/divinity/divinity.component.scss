@@ -1,33 +1,53 @@
 .divinity-component {
-  background: rgba(0,0,0, 0.8) url('../../assets/backgrounds/hero-bg.jpg') center cover;
   display: grid;
+  position: relative;
+  padding-top: 0.4em;
+  margin-top: 0.3em;
+}
+
+.divinity-component:before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.2;
+  background: url("../../assets/backgrounds/god-tree-bg.jpg") center/cover;
 }
 
 .divinity-component.big {
   grid-template-areas: "picture children children" "picture children children" "name description description";
   grid-template-rows: 5em 5em 3em;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 0.6fr 1fr 1fr;
+
   .divi-picture {
-      -webkit-box-shadow: -4px 3px 92px 0px rgba(191, 191, 191, 1);
-      -moz-box-shadow: -4px 3px 92px 0px rgba(191, 191, 191, 1);
-      box-shadow: -4px 3px 92px 0px rgba(191, 191, 191, 1);
-      border: 2px solid white;
+      -webkit-box-shadow: -2px 1px 20px 0px rgba(191, 191, 191, 1);
+      -moz-box-shadow: -2px 1px 20px 0px rgba(191, 191, 191, 1);
+      box-shadow: -2px 1px 20px 0px rgba(191, 191, 191, 1);
+      border: 2px outset darkgray;
       object-fit: cover;
       grid-area: picture;
-      height: 90%;
+      height: 9em;
       align-self: center;
       justify-self: center;
   }
+
   .divi-children {
       grid-area: children;
   }
+
   .divi-name {
       grid-area: name;
       font-size: 2em;
       justify-self: center;
       font-family: 'Supermercado One', cursive !important;
   }
+
   .divi-description {
       grid-area: description;
   }
+
 }

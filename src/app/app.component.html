@@ -1,13 +1,17 @@
 <div>
   <app-header #header></app-header>
-  <div>
-    Something about Cronos?
+  <div id="chaos-intro">
+    <span class="title">Chaos</span>
+    <span class="intro">...was, according to Greek mythology, the origin of everything, and the first thing that ever existed. It was the primordial void, the source out of which everything was created, including the universe and the gods.
+      Travel in this tree of greek mythology starting from his first daughter, Gaia.
+    </span>
+    <hr>
   </div>
-  <div #divinitiesList>
-    <app-divinity *ngFor="let divinity of selectedDivinityTree"
-      [divinity]="divinity"
-      [children]="filterDivinityChildren(divinity)"
-      (eventListener)="this.onDivinitySelected($event)">
+  <div style="padding: 8px">
+    <app-divinity *ngFor="let deity of divinityTree"
+      [divinity]="deity"
+      [children]="filterDivinityChildren(deity)"
+      (diviSelectedListener)="this.onDivinitySelected($event)">
     </app-divinity>
   </div>
 </div>

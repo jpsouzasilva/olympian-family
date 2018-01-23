@@ -8,24 +8,19 @@ import Divinity from '../../models/divinity';
 })
 export class DivinityChildrenComponent implements OnInit {
 
-  @Output() divinityEvent = new EventEmitter<{event: String, data: Object}>();
+  @Output() selectedEvent = new EventEmitter<{event: String, divinity: Divinity}>();
   @Input() divinity: Divinity;
-  
-  private _imagePath: string;
 
   constructor() { }
 
   ngOnInit() {}
 
-  get imagePath(): string {
-    if (!!this._imagePath) {
-      this._imagePath = Divinity.acquireImagePathSmall(this.divinity.name);
-    }
-    return this._imagePath;
+  imagePath(): string {
+    return Divinity.acquireImagePathSmall(this.divinity.name);
   }
 
   onDivinitySelected() {
-    this.divinityEvent.emit({event: 'click', data: this.divinity});
+    this.selectedEvent.emit({event: 'click', divinity: this.divinity});
   }
 
   tooltip(): string {

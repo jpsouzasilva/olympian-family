@@ -12,18 +12,14 @@ export class DivinityComponent implements OnInit {
 
   @Input() divinity: Divinity;
   @Input() children: Divinity[];
-  @Output() eventListener = new EventEmitter<{event: String, data: Object}>();
-  @ViewChild('app-divinity-children') divinityChildren: DivinityChildrenComponent;
-
-  private _imagePath: string;
-
+  @Output() diviSelectedListener = new EventEmitter<{event: String, divinity: Divinity}>();
+  
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
   
-  onSelectDivinity($event) {
-    this.eventListener.emit({event: 'selected', data: $event.name});
+  onSelectDivinity(event) {
+    this.diviSelectedListener.emit({event: event.event, divinity: event.divinity});
   }
 
   imagePath(): string {

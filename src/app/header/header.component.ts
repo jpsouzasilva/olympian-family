@@ -9,7 +9,7 @@ import Divinity from '../models/divinity';
 export class HeaderComponent implements OnInit {
 
   divinity: Divinity;
-  divinityBanner: String;
+  divinityBanner: String = 'assets/app/loading.gif';
 
   constructor() { }
 
