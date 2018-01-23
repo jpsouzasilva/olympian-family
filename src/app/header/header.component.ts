@@ -9,7 +9,8 @@ import Divinity from '../models/divinity';
 export class HeaderComponent implements OnInit {
 
   divinity: Divinity;
-  divinityBanner: String = 'assets/app/loading.gif';
+  divinityBanner: String;
+  loading = true;
 
   constructor() { }
 
@@ -17,8 +18,10 @@ export class HeaderComponent implements OnInit {
   }
 
   onDivinityWasSelected(divinity: Divinity) {
+    this.loading = true;
     this.divinity = divinity;
     this.divinityBanner = Divinity.acquireImagePathBig(divinity.name);
+    this.loading = false;
   }
 
 }

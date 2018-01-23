@@ -12,7 +12,7 @@ export default class Divinity {
     }
 
     get description(): string {
-        return this.bio.length !== 0 ? this.bio : 'Not informed';
+        return this.bio.length !== 0 ? this.bio : "God's bio not informed.";
     }
 
     static createDivinity(jsonPayload: Object): Divinity {

@@ -8,9 +8,11 @@
     <hr>
   </div>
   <div style="padding: 8px">
-    <app-divinity *ngFor="let deity of divinityTree"
+    <app-divinity *ngFor="let deity of divinityTree; let level = index"
       [divinity]="deity"
+      [childrenActive]="level != 0"
       [children]="filterDivinityChildren(deity)"
+      [treeLevel]="level"
       (diviSelectedListener)="this.onDivinitySelected($event)">
     </app-divinity>
   </div>

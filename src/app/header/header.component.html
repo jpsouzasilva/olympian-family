@@ -1,3 +1,4 @@
 <div class="header main">
-  <img class="header-banner" [src]="divinityBanner" alt="current divinity img" />
+  <img *ngIf="loading" class="header-loading" src="../../assets/app/loading.gif" alt="loading img" />
+  <img *ngIf="!loading" class="header-banner" [src]="divinityBanner" alt="current divinity img" />
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import Divinity from './models/divinity';
 import { DivinitiesService } from './divinities.service';
 import { HeaderComponent } from './header/header.component';
@@ -38,9 +38,11 @@ export class AppComponent implements OnInit, AfterContentInit {
   }
 
   onDivinitySelected(eventData) {
-    this.divinityTree = [eventData.divinity].concat(this.divinityTree);
+    const length = this.divinityTree.length;
+    console.log(eventData.treeLevel);
+    this.divinityTree = [eventData.divinity].concat(this.divinityTree.splice(eventData.treeLevel));
     this.appHeader.onDivinityWasSelected(this.divinityTree.length > 0 ? this.divinityTree[0] : undefined);
-    document.querySelector('.divinity-component').scrollIntoView({
+    document.querySelector('hr').scrollIntoView({
       behavior: 'smooth'
     });
   }
