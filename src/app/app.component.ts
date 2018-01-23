@@ -39,7 +39,6 @@ export class AppComponent implements OnInit, AfterContentInit {
 
   onDivinitySelected(eventData) {
     const length = this.divinityTree.length;
-    console.log(eventData.treeLevel);
     this.divinityTree = [eventData.divinity].concat(this.divinityTree.splice(eventData.treeLevel));
     this.appHeader.onDivinityWasSelected(this.divinityTree.length > 0 ? this.divinityTree[0] : undefined);
     document.querySelector('hr').scrollIntoView({

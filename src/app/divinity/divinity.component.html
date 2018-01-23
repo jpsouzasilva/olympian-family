@@ -1,7 +1,7 @@
 <div *ngIf="divinity"
   [ngClass]="{'no-children': children.length == 0}"
   class="divinity-component big">
-  <img *ngIf="childrenActive" class="divi-uparrow" src="../../assets/app/up-arrow.png" alt="tree arrow">
+  <img *ngIf="childrenActive" class="divi-uparrow" src="assets/app/up-arrow.png" alt="tree arrow">
   <img class="divi-picture" [src]="imagePath()" [alt]="divinity.name" />
   <div class="divi-children">
     <app-divinity-children
